@@ -1,0 +1,27 @@
+body {
+    background-color: ivory;
+}
+
+#note_box_container {
+    margin: auto;
+    width: 80%;
+    height: 80%;
+    background-color: bisque;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    border: 0.5em solid burlywood;
+    border-radius: 0.5em;
+    display: flex;
+    flex-direction: column;
+}
+
+#direction {
+    font-size: 1em;
+}
+
+#note_box {
+    width: 90%;
+    height: 80vh;
+    margin: 4em;
+}

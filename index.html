@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link href = "welcome.css" rel = "stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id = 'welcome'>
+        <h1>Welcome to<br>NoteBox</h1>
+        <div id = 'button_box'>
+            <button id = 'login_button' class = 'welcome_button' type = 'button'>Login</button>
+            <button id = 'signup_button' class = 'welcome_button' type = 'button'>Sign Up</button>
+        </div>
+
+        <div id = 'login_modal' class = 'entry_modal'>
+            <label for = 'email'>E-mail</label>
+            <input type = 'email' name = 'email' required>
+
+            <label for = 'password'>Password</label>
+            <input type = 'text' name = 'password' required>
+
+            <button id = 'login_modal_button' class = 'welcome_button'>Login</button>
+            <button id = 'login_back' class = 'welcome_button'>Back</button>
+        </div>
+
+        <div id = 'field_error'>text</div>
+
+        <div id = 'signup_modal' class = 'entry_modal'>
+
+            <label for = 'email'>E-mail</label>
+            <input type = 'text' id = 'signup_email' name = 'email' required>
+
+            <label for = 'password'>Password</label>
+            <input type = 'text' id = 'signup_password' name = 'password' required>
+
+            <label for = 'verify_password'>Verify Password</label>
+            <input type = 'text' id = 'verify_password' name = 'verify_password' required>
+
+            <button id = 'signup_modal_button' class = 'welcome_button'>Sign Up</button>
+            <button id = 'signup_back' class = 'welcome_button'>Back</button>
+        </div>
+
+
+        <div class = 'attribute'>
+        <a href="https://unsplash.com/@mooo3721?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Photo by R Mo</a>
+        </div>
+    </div>
+    <script src = "welcome.js"></script>
+</body>
+</html>
