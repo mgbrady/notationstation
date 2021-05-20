@@ -1,115 +1,117 @@
-var buttonBox = document.querySelector('#button_box');
-var loginButton = document.querySelector('#login_button');
-var signupButton = document.querySelector('#signup_button');
+/*
+    Polls status of select item, sets the display of the selected option
+    to 'block' and then hides itself.
+*/
+function engage_selection() {
+    const selection = document.getElementById('login_selection').value;
+    const button = document.getElementById('go_button');
+    var sbox = document.getElementById('selection_box');
+
+    if ('1'.localeCompare(selection) == 0) {
+        sbox.style.display = 'none';
+        document.getElementById('login_modal').style.display = 'block';
+    } else if ('2'.localeCompare(selection) == 0) {
+        sbox.style.display = 'none';
+        document.getElementById('signup_modal').style.display = 'block';
+    }
+}
+document.getElementById('go_button').addEventListener('click', engage_selection);
+
 
 /*
-    Following event listeners are the first two
-    visible buttons, once clicked removes themselves
-    from display and presents the according
-    login 'modal'
+    Returns user to default login screen with select item. Hides all elements
+    outside of the default selection box
 */
+function go_back() {
+    document.getElementById('selection_box').style.display = 'block';
+    document.getElementById('login_modal').style.display = 'none';
+    document.getElementById('signup_modal').style.display = 'none';
+    document.getElementById('error_prompt').style.display = 'none';
+}
+document.getElementById('login_back_button').addEventListener('click', go_back)
+document.getElementById('signup_back_button').addEventListener('click', go_back)
 
-loginButton.addEventListener(
-    'click',
-    () => {
-        buttonBox.style.display = 'none';
-        document.querySelector('#login_modal').style.display = 'flex';
-    }
-)
+/*
+    email verification resolved here
+*/
+function verify_email(email) {
+    return /^[^@]+@[^@]+\.[^@]+$/.test(email);
+}
 
-signupButton.addEventListener(
-    'click',
-    () => {
-        buttonBox.style.display = 'none';
-        document.querySelector('#signup_modal').style.display = 'flex';
-    }
-)
-
-//used for signing in
-var loginModalButton = document.querySelector('#login_modal_button');
-loginModalButton.addEventListener('click', verifyEmail);
-
-
-//used for signing up
-var signupModalButton = document.querySelector('#signup_modal_button');
-signupModalButton.addEventListener('click', signUp);
-
-function verifyEmail(email) {
-    /*
-    console.log(new RegExp("^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$").test(email));
-    return new RegExp("^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$").test(email);
-    console.log(new RegExp("^\S+@\S+$").test(email))
-    return new RegExp("^\S+@\S+$").test(email);
-
-    var regex = new RegExp( "^\S+@\S+$");
-    console.log(regex.test(String(email)));
-    return regex.test(String(email));
-    */
-
-    /*none of the above work, don't know how to properly verfiy regex with javascript
-    hardcoding true return in meantime
-    */
-
-    return true;
-
+/*
+    Displays an error status above section according to what error was thrown
+*/
+function welcome_error(err) {
+        var error_prompt = document.getElementById('error_prompt');
+        console.log(err);
+        error_prompt.innerHTML = err;
+        error_prompt.style.display = 'block';
 }
 
 
 /*
-    function runs after filling out the forms on the sing up modal
-    verifyEmail hardcoded true due to not being able to make regex work
+    Takes email, verifies that it is valid
+        (Would also compare to what is already registered, but local storage can only contain
+            a single instance of 'username' or 'password')
+    then adds the email to "username" key in local storage, and then verifies that both passwords
+    entered match, and adds it to the "password" key in local storage.
 
-    the values are added to document.cookie after checking validity
-
-    cookies do not carry over to next page
-
-    plan was to compare login credentials on the cookie to those that were
-    used during sign up.  Trying to figure out how cookies work
+    If the email is not valid or the passwords don't match, an exception is thrown, which sends the
+    error to the welcome_error function
 */
-function signUp() {
-    var email = document.getElementById('signup_email').value;
-    var password = document.getElementById('signup_password').value;
-    var verify = document.getElementById('verify_password').value;
+function signup() {
     try {
-        if (verifyEmail(email)) {
-            document.cookie += "email=" + email + ";";
-            console.log(email + " valid!");
+        const email = document.getElementById('signup_email').value;
+        if (verify_email(email)) {
+            localStorage.setItem("email", email);
         } else {
-            throw "Email is not valid!";
+            throw "Invalid Email";
         }
-        if (password == verify) {
-            document.cookie += "password=" + password + ";";
-            console.log(password);
+
+        const password = document.getElementById('signup_password').value;
+        const vpass = document.getElementById('signup_vpass').value;
+
+        if (password == vpass) {
+            localStorage.setItem("password", password);
         } else {
             throw "Passwords do not match!";
         }
-
-        console.log(document.cookie);
-        location.href = 'ns/note_box.html';
+        success();
     } catch (err) {
-        console.log(err);
-        var notification = document.getElementById('field_error');
-        notification.style.display = 'flex';
-        notification.innerHTML = err;
+        welcome_error(err);
     }
 }
+document.getElementById('signup_button').addEventListener('click', signup);
 
-
-/*
-    adds event listener to the back button in case user
-    want's to return back to the first prompt
-*/
-
-var loginBack = document.querySelector('#login_back');
-loginBack.addEventListener('click', back_to_box);
-var signupBack = document.querySelector('#signup_back');
-signupBack.addEventListener('click', back_to_box);
-
-/*
-    sets the first buttons to visible while hiding the modal buttons
-*/
-function back_to_box() {
-    buttonBox.style.display = 'flex';
-    document.querySelector('#signup_modal').style.display = 'none';
-    document.querySelector('#login_modal').style.display = 'none';
+function login() {
+    try {
+        if (document.getElementById('login_email').value != localStorage.getItem('email')) {
+            throw "Invalid Email!";
+        } else if (document.getElementById('login_password').value != localStorage.getItem('password')) {
+            throw "Invalid Password";
+        } else {
+            success();
+        }
+    } catch (err) {
+        welcome_error(err);
+    }
 }
+document.getElementById('login_button').addEventListener('click', login);
+
+/*
+    simple alert to inform user that information is correct and
+    has a button to continue into the app
+*/
+function success() {
+    document.getElementById('selection_box').style.display = 'none';
+    document.getElementById('login_modal').style.display = 'none';
+    document.getElementById('signup_modal').style.display = 'none';
+    document.getElementById('error_prompt').style.display = 'none';
+
+    document.getElementById('successful_entry').style.display = 'block';
+}
+
+function goToNotationStation() {
+    window.location = "notationStation/index.html"
+}
+document.getElementById('continue').addEventListener('click', goToNotationStation);

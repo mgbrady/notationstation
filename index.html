@@ -4,52 +4,63 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
+    <title>Welcome to Notation Station!</title>
     <link href = "welcome.css" rel = "stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id = 'welcome'>
-        <h1>Welcome to<br>NoteBox</h1>
-        <div id = 'button_box'>
-            <button id = 'login_button' class = 'welcome_button' type = 'button'>Login</button>
-            <button id = 'signup_button' class = 'welcome_button' type = 'button'>Sign Up</button>
+    <div class = 'wbox'>
+        <div id = 'selection_prompt'>
+            <h1>Welcome to<br/>Notation Station!</h1>
+            <div id = 'selection_box' class = 'sub_box button_box'>
+                <select id = 'login_selection' class = 'wbutton'>
+                    <option value = ''>Select</option>
+                    <option value = '1'>Login</option>
+                    <option value = '2'>Sign Up</option>
+                </select>
+                <button type = 'button' id = 'go_button' class = 'wbutton'>Go!</button>
+            </div>
+            <div id = 'error_prompt'>Error messages go here!</div>
         </div>
 
-        <div id = 'login_modal' class = 'entry_modal'>
-            <label for = 'email'>E-mail</label>
-            <input type = 'email' name = 'email' required>
-
-            <label for = 'password'>Password</label>
-            <input type = 'text' name = 'password' required>
-
-            <button id = 'login_modal_button' class = 'welcome_button'>Login</button>
-            <button id = 'login_back' class = 'welcome_button'>Back</button>
+        <div id = 'login_modal' class = 'entry_modal sub_box'>
+            <table>
+                <tr><td>Email</td></tr>
+                <tr><td><input type = 'text' id = 'login_email' class = 'modal_input' name = 'login_email'/></td></tr>
+                <tr><td>Password</td></tr>
+                <tr><td><input type = 'password' id = 'login_password' class = 'modal_input' name = 'login_password'/></td></tr>
+                <tr><td>
+                    <div class = 'button_box'>
+                        <button type = 'button' id = 'login_button' class = 'wbutton'>Login</button>
+                        <button type = 'button' id = 'login_back_button' class = 'wbutton'>Back</button>
+                    </div>
+                </td></tr>
+            </table>
         </div>
 
-        <div id = 'field_error'>text</div>
-
-        <div id = 'signup_modal' class = 'entry_modal'>
-
-            <label for = 'email'>E-mail</label>
-            <input type = 'text' id = 'signup_email' name = 'email' required>
-
-            <label for = 'password'>Password</label>
-            <input type = 'text' id = 'signup_password' name = 'password' required>
-
-            <label for = 'verify_password'>Verify Password</label>
-            <input type = 'text' id = 'verify_password' name = 'verify_password' required>
-
-            <button id = 'signup_modal_button' class = 'welcome_button'>Sign Up</button>
-            <button id = 'signup_back' class = 'welcome_button'>Back</button>
+        <div id = 'signup_modal' class = 'entry_modal sub_box'>
+            <table>
+                <tr><td>Email</td></tr>
+                <tr><td><input type = 'text' id = 'signup_email' class = 'modal_input' name = 'signup_email'/></td></tr>
+                <tr><td>Password</td></tr>
+                <tr><td><input type = 'password' id = 'signup_password' class = 'modal_input' name = 'signup_password'/></td></tr>
+                <tr><td>Verify Password</td></tr>
+                <tr><td><input type = 'password' id = 'signup_vpass' class = 'modal_input' name = 'signup_vpass'/></td></tr>
+                <tr><td>
+                    <div class = 'button_box'>
+                        <button type = 'button' id = 'signup_button' class = 'wbutton'>Sign Up</button>
+                        <button type = 'button' id = 'signup_back_button' class = 'wbutton'>Back</button>
+                    </div>
+                </td></tr>
+            </table>
         </div>
 
-
-        <div class = 'attribute'>
-        <a href="https://unsplash.com/@mooo3721?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Photo by R Mo</a>
+        <div id = 'successful_entry'>
+            <h1>Success!</h1><br />
+            <button type = 'button' id = 'continue' class = 'wbutton' >Continue</button>
         </div>
     </div>
-    <script src = "welcome.js"></script>
+    <script src = welcome.js></script>
 </body>
 </html>
