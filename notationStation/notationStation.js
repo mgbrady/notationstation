@@ -9,3 +9,8 @@ function commit_note() {
     console.log(localStorage.getItem('body'));
 }
 document.getElementById('submit_note').addEventListener('click', commit_note)
+
+function goto_readme() {
+    window.location = '../readme.html';
+}
+document.getElementById('readme').addEventListener('click', goto_readme);

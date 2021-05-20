@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Notation Station!</title>
+    <link href = "welcome.css" rel = "stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class = 'wbox'>
+        <h1>Notation Station</h1>
+
+<h3>A simple web app that saves notes</h3>
+
+<hr />
+
+<p>User is presented with a welcome modal, from which they can eighter choose to
+'Sign Up' or 'Login'. Filling out the 'Sign Up' forms verifies and saves the
+information in local storage allowing the user to enter their information into
+the login prompt in any session afterwards.</p>
+
+<p>After proceeding past the welcome screen, the user is presented with two forms,
+one labeled 'Subject' and a text area underneath. The user can fill out both
+input areas and hit the 'submit' button, saving the information under the
+'subject' and 'body' keys in local storage</p>
+        <button type = 'button' id = 'nsback' class = 'wbutton'>Back</button>
+    </div>
+    <script>
+        document.getElementById('nsback').addEventListener('click', () => window.location = 'notationStation/index.html');
+    </script>
+</body>
+</html>

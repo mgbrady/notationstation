@@ -115,3 +115,4 @@ function goToNotationStation() {
     window.location = "notationStation/index.html"
 }
 document.getElementById('continue').addEventListener('click', goToNotationStation);
+document.getElementById('nsback').addEventListener('click', goToNotationStation);
