@@ -14,4 +14,5 @@ one labeled 'Subject' and a text area underneath. The user can fill out both
 input areas and hit the 'submit' button, saving the information under the
 'subject' and 'body' keys in local storage.
 
-live version can be found at notationstation.michaelgbrady.com
+live version can be found at
+[notationstation.michaelgbrady.com](http://notationstation.michaelgbrady.com)
