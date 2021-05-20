@@ -1,6 +1,6 @@
-* Notation Station
+# Notation Station
 
-** A simple web app that saves notes
+## A simple web app that saves notes
 
 ---
 
